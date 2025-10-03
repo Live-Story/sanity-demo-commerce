@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "hydrogen",
-  "installCommand": "npm ci --prefix=../..",
+  "installCommand": "npm install --legacy-peer-deps",
   "ignoreCommand": "npx turbo-ignore"
 }

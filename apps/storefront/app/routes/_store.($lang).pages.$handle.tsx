@@ -55,6 +55,18 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
     throw notFound();
   }
 
+  const p = page.body
+    .filter(
+      (i): i is typeof i & { reference: any } => i._type === "module.livestory"
+    )
+    .map((block) => {
+      return {
+        ...block,
+        ...block.reference,
+      };
+    });
+  console.log("PAGE", p);
+
   // Resolve any references to products on the Storefront API
   const gids = fetchGids({ page, context });
 
@@ -87,7 +99,7 @@ export default function Page() {
                   blocks={page.body}
                   centered
                   className={clsx(
-                    "mx-auto max-w-[660px] px-4 pb-24 pt-8", //
+                    "mx-auto px-4 pb-24 pt-8", //
                     "md:px-8"
                   )}
                 />

@@ -12,6 +12,8 @@ const annotations = [
 ]
 
 // Document types
+import { LiveStoryDocument as livestory } from 'livestory-sanity/studio'
+
 import collection from './documents/collection'
 import colorTheme from './documents/colorTheme'
 import guide from './documents/guide'
@@ -21,7 +23,7 @@ import person from './documents/person'
 import product from './documents/product'
 import productVariant from './documents/productVariant'
 
-const documents = [collection, colorTheme, guide, material, page, product, productVariant, person]
+const documents = [collection, colorTheme, guide, material, page, product, productVariant, person, livestory]
 
 // Singleton document types
 import home from './singletons/home'
@@ -36,7 +38,10 @@ import simpleBlockContent from './blocks/simpleBlockContent'
 
 const blocks = [body, simpleBlockContent]
 
-// Object types
+// Object type
+import { LiveStoryObject as liveStoryBlock } from 'livestory-sanity/studio'
+import { LiveStoryModuleStudio as moduleLiveStory } from 'livestory-sanity/studio'
+
 import creator from './objects/creator'
 import customProductOptionColor from './objects/customProductOption/color'
 import customProductOptionSize from './objects/customProductOption/size'
@@ -107,6 +112,8 @@ const objects = [
   shopifyCollectionRule,
   shopifyProduct,
   shopifyProductVariant,
+  liveStoryBlock,
+  moduleLiveStory
 ]
 
 export const types = [...annotations, ...documents, ...singletons, ...objects, ...blocks]

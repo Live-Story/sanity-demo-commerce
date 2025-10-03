@@ -1,5 +1,6 @@
 import type { PortableTextBlock } from "@portabletext/types";
 import type { Image } from "@sanity/types";
+import type { SanityModuleLiveStory } from "livestory-sanity/storefront";
 
 import type { SanityColorTheme } from "~/lib/theme";
 import type { ProductWithNodes } from "~/types/shopify";
@@ -48,6 +49,7 @@ export type SanityCollectionPage = {
   slug?: string;
   sortOrder: string;
   title: string;
+  liveStory: any;
 };
 
 export type SanityCollectionGroup = {
@@ -111,6 +113,7 @@ export type SanityHomePage = {
   hero?: SanityHeroHome;
   modules: (SanityModuleImage | SanityModuleInstagram)[];
   seo: SanitySeo;
+  liveStoryHP?: any;
 };
 
 export type SanityImageWithProductHotspots = {
@@ -151,7 +154,8 @@ export type SanityModule =
   | SanityModuleGrid
   | SanityModuleImage
   | SanityModuleInstagram
-  | SanityModuleProduct;
+  | SanityModuleProduct
+  | SanityModuleLiveStory;
 
 export type SanityModuleAccordion = {
   _key?: string;
@@ -315,6 +319,7 @@ export type SanityProductPage = {
   customProductOptions?: SanityCustomProductOption[];
   gid: string;
   slug?: string;
+  liveStory?: any;
   seo: SanitySeo;
   creators: SanityCreator[];
   composition: SanityComposition[];

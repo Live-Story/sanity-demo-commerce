@@ -12,7 +12,7 @@ export default function HomeHero({ hero }: Props) {
   return (
     <div
       className={clsx(
-        "flex flex-col items-center rounded-b-xl bg-peach px-4 pb-4 pt-24",
+        "flex flex-col items-center rounded-b-xl bg-lightGray px-4 pb-4 pt-24",
         "md:px-8 md:pb-8 md:pt-34"
       )}
     >

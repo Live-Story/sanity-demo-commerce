@@ -1,3 +1,5 @@
+import { LiveStoryModule } from "livestory-sanity/storefront";
+
 import CalloutModule from "~/components/modules/Callout";
 import CallToActionModule from "~/components/modules/CallToAction";
 import CollectionModule from "~/components/modules/Collection";
@@ -21,6 +23,8 @@ export default function Module({ imageAspectClassName, module }: Props) {
       return <CollectionModule module={module} />;
     case "module.image":
       return <ImageModule module={module} />;
+    case "module.livestory":
+      return <LiveStoryModule module={module} />;
     case "module.instagram":
       return <InstagramModule module={module} />;
     case "module.product":

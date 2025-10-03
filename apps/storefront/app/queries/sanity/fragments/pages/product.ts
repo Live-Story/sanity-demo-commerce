@@ -14,8 +14,13 @@ import { SHARED_TEXT } from "../sharedText";
 export const PRODUCT_PAGE = groq`
   _id,
   "available": !store.isDeleted && store.status == 'active',
-  "body": coalesce(body[_key == $language][0].value, body[_key == $baseLanguage][0].value)[] {
+  "body": coalesce(body)[] {
     ${PORTABLE_TEXT}
+  },
+  "liveStory": liveStory -> {
+    title,
+    id,
+    type
   },
   colorTheme->{
     ${COLOR_THEME}

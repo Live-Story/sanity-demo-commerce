@@ -118,6 +118,21 @@ export default function App() {
         <Seo />
         <Meta />
         <Links />
+        <script
+          nonce={nonce}
+          src="https://code.jquery.com/jquery-3.7.0.min.js"
+        />
+        <script
+          nonce={nonce}
+          src="https://assets.livestory.io/dist/livestory-demo.min.js"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.$ls = window.$ls || function(){(window.$ls.q=window.$ls.q||[]).push(arguments)};
+            `,
+          }}
+        />
       </head>
       <body>
         <Outlet key={`${locale.language}-${locale.country}`} />

@@ -69,6 +69,14 @@ export default defineType({
       to: [{type: 'colorTheme'}],
       group: 'theme',
     }),
+    // Live Story
+    defineField({
+      name: 'liveStory',
+      title: 'Live Story',
+      type: 'reference',
+      to: [{type: 'livestory'}],
+      group: 'editorial',
+    }),
     // Vector
     defineField({
       name: 'vector',

@@ -7,6 +7,7 @@ import {
 } from "@shopify/remix-oxygen";
 import clsx from "clsx";
 import { SanityPreview } from "hydrogen-sanity";
+import LiveStory from "livestory-sanity";
 import { Suspense } from "react";
 
 import HomeHero from "~/components/heroes/Home";
@@ -32,7 +33,7 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
 
   const cache = context.storefront.CacheCustom({
     mode: "public",
-    maxAge: 60,
+    maxAge: 0,
     staleWhileRevalidate: 60,
   });
 
@@ -43,6 +44,8 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
     },
     cache,
   });
+
+  console.log(page);
 
   if (!page) {
     throw notFound();
@@ -72,6 +75,14 @@ export default function Index() {
           <Await resolve={gids}>
             {/* Page hero */}
             {page?.hero && <HomeHero hero={page.hero as SanityHeroHome} />}
+
+            {/* Live Story HomePage */}
+            {page?.liveStoryHP && (
+              <LiveStory.Storefront.LiveStory
+                value={page.liveStoryHP}
+                language={language}
+              />
+            )}
 
             {page?.modules && (
               <div className={clsx("mb-32 mt-24 px-4", "md:px-8")}>

@@ -14,6 +14,7 @@ import CalloutBlock from "~/components/portableText/blocks/Callout";
 import GridBlock from "~/components/portableText/blocks/Grid";
 import ImagesBlock from "~/components/portableText/blocks/Images";
 import InstagramBlock from "~/components/portableText/blocks/Instagram";
+import LiveStoryBlock from "~/components/portableText/blocks/LiveStory";
 import ProductsBlock from "~/components/portableText/blocks/Products";
 import TaggedProductsBlock from "~/components/portableText/blocks/TaggedProducts";
 
@@ -57,6 +58,7 @@ export default function PortableText({ blocks, centered, className }: Props) {
       "module.instagram": InstagramBlock,
       "module.products": ProductsBlock,
       "module.taggedProducts": TaggedProductsBlock,
+      "module.livestory": LiveStoryBlock,
     },
   };
 

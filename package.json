@@ -2,11 +2,13 @@
   "name": "demo-ecommerce",
   "description": "AKVA is a Hydrogen starter that presents a real-world example of how Sanity and Structured Content can elevate your custom Shopify storefronts.",
   "private": true,
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
+    "proxy": "node proxy.js",
     "build": "turbo run build --concurrency=1",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --concurrency=1",
@@ -23,5 +25,9 @@
     "turbo": "^1.11.3",
     "vercel": "^32.7.2"
   },
-  "packageManager": "npm@10.2.3"
+  "packageManager": "npm@10.2.3",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "http-proxy": "^1.18.1"
+  }
 }

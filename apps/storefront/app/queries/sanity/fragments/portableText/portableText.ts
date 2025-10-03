@@ -16,6 +16,18 @@ export const PORTABLE_TEXT = groq`
     '_type': 'module.accordion',
     ${MODULE_ACCORDION},
   },
+  (_type == 'block') => {
+    '_type': 'block',
+    style,
+    children[]{
+      _type,
+      text,
+      marks
+    },
+    markDefs[]{
+      ${MARK_DEFS}
+    }
+  },
   (_type == 'blockCallout' || _type == 'module.callout') => {
     '_type': 'module.callout',
     ${MODULE_CALLOUT}
@@ -39,6 +51,22 @@ export const PORTABLE_TEXT = groq`
   (_type == 'blockTaggedProducts' || _type == 'module.blockTaggedProducts') => {
     '_type': 'module.taggedProducts',
     ${MODULE_TAGGED_PRODUCTS}
+  },
+  (_type == 'blockLiveStory' || _type == 'module.livestory') => {
+    '_type': 'module.livestory',
+    _type == "blockLiveStory" => {
+      "refId": reference->_id,
+      "refType": reference->_type,
+      "title": reference->title,
+      "id": reference->id,
+      "type": reference->type
+    },
+    _type == "module.livestory" => {
+      title,
+      id,
+      type,
+      "tipo": "portableText"
+    }
   },
   markDefs[] {
     ${MARK_DEFS}

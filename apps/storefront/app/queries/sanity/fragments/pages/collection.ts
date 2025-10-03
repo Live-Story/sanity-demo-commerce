@@ -24,4 +24,9 @@ export const COLLECTION_PAGE = groq`
   "slug": store.slug.current,
   "sortOrder": store.sortOrder,
   "title": store.title,
+  "liveStory": liveStory -> {
+    title,
+    id,
+    type
+  }
 `;

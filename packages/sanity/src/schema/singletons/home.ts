@@ -18,6 +18,10 @@ export default defineField({
       name: 'seo',
       title: 'SEO',
     },
+    {
+      name: 'livestory',
+      title: 'Live Story',
+    },
   ],
   fields: [
     // Hero
@@ -26,6 +30,14 @@ export default defineField({
       title: 'Hero',
       type: 'hero.home',
       group: 'editorial',
+    }),
+    // Live Story
+    defineField({
+      name: 'liveStoryHP',
+      title: 'Live Story Homepage',
+      type: 'reference',
+      to: [{ type: 'livestory' }],
+      group: 'livestory',
     }),
     // Modules
     defineField({
@@ -39,6 +51,7 @@ export default defineField({
         {type: 'module.image'},
         {type: 'module.instagram'},
         {type: 'module.product'},
+        {type: 'module.livestory'},
       ],
       group: 'editorial',
     }),

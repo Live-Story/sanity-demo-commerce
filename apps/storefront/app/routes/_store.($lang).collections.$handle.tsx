@@ -13,6 +13,7 @@ import {
 } from "@shopify/remix-oxygen";
 import clsx from "clsx";
 import { SanityPreview } from "hydrogen-sanity";
+import { LiveStory } from "livestory-sanity/storefront";
 import { Suspense } from "react";
 import invariant from "tiny-invariant";
 
@@ -63,7 +64,7 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
 
   const cache = context.storefront.CacheCustom({
     mode: "public",
-    maxAge: 60,
+    maxAge: 0,
     staleWhileRevalidate: 60,
   });
 
@@ -91,6 +92,8 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
   if (!page || !collection) {
     throw notFound();
   }
+
+  console.log("Collection page LS", page);
 
   // Resolve any references to products on the Storefront API
   const gids = fetchGids({ page, context });
@@ -151,6 +154,13 @@ export default function Collection() {
                       key={page?._id}
                       initialSortOrder={page?.sortOrder}
                     />
+                  </div>
+                )}
+
+                {/* Live Story Block */}
+                {page?.liveStory?.id && page?.liveStory?.type && (
+                  <div className="mx-auto mt-10 min-h-[500px] overflow-hidden px-5">
+                    <LiveStory value={page.liveStory} language={language} />
                   </div>
                 )}
 

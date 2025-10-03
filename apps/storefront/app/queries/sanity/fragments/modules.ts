@@ -32,4 +32,9 @@ export const MODULES = groq`
   (_type == "module.product") => {
     ${MODULE_PRODUCT}
   },
+  (_type == "module.livestory") => {
+    "id": reference->id,
+    "type": reference->type,
+    "title": reference->title,
+  }
 `;
