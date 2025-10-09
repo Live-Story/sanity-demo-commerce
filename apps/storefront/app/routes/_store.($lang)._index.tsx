@@ -33,7 +33,7 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
 
   const cache = context.storefront.CacheCustom({
     mode: "public",
-    maxAge: 0,
+    maxAge: 60,
     staleWhileRevalidate: 60,
   });
 
@@ -45,10 +45,25 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
     cache,
   });
 
-  console.log(page);
-
   if (!page) {
     throw notFound();
+  }
+
+  // Fetch Live Story SSR content
+  const type =
+    page.liveStoryHP?.type === "wallgroup" ? "destination" : "layout";
+
+  const LSssrResponse = await fetch(
+    `https://api.livestory.io/content/${type}/${
+      page.liveStoryHP?.id
+    }?lang_code=${language ?? "default"}`,
+    {
+      method: "GET",
+    }
+  );
+
+  if (page.liveStoryHP && LSssrResponse.ok) {
+    page.liveStoryHP.ssr = await LSssrResponse.text();
   }
 
   // Resolve any references to products on the Storefront API

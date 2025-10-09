@@ -113,7 +113,11 @@ export type SanityHomePage = {
   hero?: SanityHeroHome;
   modules: (SanityModuleImage | SanityModuleInstagram)[];
   seo: SanitySeo;
-  liveStoryHP?: any;
+  liveStoryHP?: {
+    id: string;
+    type: "layout" | "wallgroup";
+    ssr?: string;
+  };
 };
 
 export type SanityImageWithProductHotspots = {
