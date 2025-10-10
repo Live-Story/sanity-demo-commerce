@@ -1,4 +1,4 @@
-import { LiveStoryModule } from "livestory-sanity/storefront";
+import { LiveStoryModule } from "livestory-sanity-sdk/storefront";
 
 import CalloutModule from "~/components/modules/Callout";
 import CallToActionModule from "~/components/modules/CallToAction";

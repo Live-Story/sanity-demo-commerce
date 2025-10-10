@@ -25,7 +25,7 @@ import {
 } from "@shopify/remix-oxygen";
 import clsx from "clsx";
 import { SanityPreview } from "hydrogen-sanity";
-import { LiveStory as LiveStoryBlock } from "livestory-sanity/storefront";
+import { LiveStory as LiveStoryBlock } from "livestory-sanity-sdk/storefront";
 import { Suspense } from "react";
 import invariant from "tiny-invariant";
 

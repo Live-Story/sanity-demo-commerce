@@ -7,7 +7,7 @@ import {
 } from "@shopify/remix-oxygen";
 import clsx from "clsx";
 import { SanityPreview } from "hydrogen-sanity";
-import LiveStory from "livestory-sanity";
+import LiveStorySanity from "livestory-sanity-sdk";
 import { Suspense } from "react";
 
 import HomeHero from "~/components/heroes/Home";
@@ -93,7 +93,7 @@ export default function Index() {
 
             {/* Live Story HomePage */}
             {page?.liveStoryHP && (
-              <LiveStory.Storefront.LiveStory
+              <LiveStorySanity.Storefront.LiveStory
                 value={page.liveStoryHP}
                 language={language}
               />

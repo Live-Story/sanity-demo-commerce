@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import type { SanityModuleLiveStory } from "livestory-sanity/storefront";
-import { LiveStoryModule } from "livestory-sanity/storefront";
+import type { SanityModuleLiveStory } from "livestory-sanity-sdk/storefront";
+import { LiveStoryModule } from "livestory-sanity-sdk/storefront";
 import type { PortableTextBlock } from "sanity";
 
 type Props = {

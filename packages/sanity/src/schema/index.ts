@@ -12,7 +12,7 @@ const annotations = [
 ]
 
 // Document types
-import { LiveStoryDocument as livestory } from 'livestory-sanity/studio'
+import { LiveStoryDocument as livestory } from 'livestory-sanity-sdk/studio'
 
 import collection from './documents/collection'
 import colorTheme from './documents/colorTheme'
@@ -39,8 +39,8 @@ import simpleBlockContent from './blocks/simpleBlockContent'
 const blocks = [body, simpleBlockContent]
 
 // Object type
-import { LiveStoryObject as liveStoryBlock } from 'livestory-sanity/studio'
-import { LiveStoryModuleStudio as moduleLiveStory } from 'livestory-sanity/studio'
+import { LiveStoryObject as liveStoryBlock } from 'livestory-sanity-sdk/studio'
+import { LiveStoryModuleStudio as moduleLiveStory } from 'livestory-sanity-sdk/studio'
 
 import creator from './objects/creator'
 import customProductOptionColor from './objects/customProductOption/color'
