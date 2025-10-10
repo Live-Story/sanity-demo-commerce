@@ -1,6 +1,6 @@
 import type { PortableTextBlock } from "@portabletext/types";
 import type { Image } from "@sanity/types";
-import type { SanityModuleLiveStory } from "livestory-sanity/storefront";
+import type { SanityModuleLiveStory } from "livestory-sanity-sdk/storefront";
 
 import type { SanityColorTheme } from "~/lib/theme";
 import type { ProductWithNodes } from "~/types/shopify";
