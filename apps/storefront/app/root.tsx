@@ -127,6 +127,7 @@ export default function App() {
           src="https://assets.livestory.io/dist/livestory-demo.min.js"
         />
         <script
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               window.$ls = window.$ls || function(){(window.$ls.q=window.$ls.q||[]).push(arguments)};
