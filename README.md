@@ -52,7 +52,8 @@ export default function MyServerComponent() {
 This example shows contents that include Live Story models.
 
 ### 1. Live Story main script
-In order to load Live Story contents successfully, you need to update the `<head>` content inside your `root.tsx` like the following
+In order to load Live Story contents successfully, you need to update the `<head>` content inside your `root.tsx` like the following, updating livestory script with your brand name `{BRAND}`
+
 
 ```javascript
 <head>

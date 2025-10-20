@@ -82,3 +82,10 @@ public/build
 # vercel
 .vercel
 .turbo
+
+.shopify
+
+# LS Docker deploy sample
+start.sh
+proxy.js
+Dockerfile
