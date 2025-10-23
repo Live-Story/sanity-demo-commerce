@@ -1,34 +1,24 @@
-# Ecommerce Demo - AKVA
+# Ecommerce Demo - AKVA - Live Story customized
 
-This demo is an enhanced version of our [AKVA][standard-akva] demo, powered by Sanity + Hydrogen. This demo is compatible with `@shopify/hydrogen ~= 2023.10.2`.
+This demo is an enhanced version of [AKVA][standard-akva] demo, powered by Sanity + Hydrogen and [Live Story](https://livestory.nyc). This demo is compatible with `@shopify/hydrogen ~= 2023.10.2`.
 
 <img src="https://user-images.githubusercontent.com/209129/173065853-77b26be2-dd15-4b4d-8164-850e70247b88.png" width="1000" />
 
-[Demo][hydrogen-sanity-demo] | [Sanity Connect for Shopify][sanity-connect]
+[Demo][hydrogen-sanity-demo] | [Sanity Connect for Shopify][sanity-connect] | [Live Story doc](https://livestory.nyc/documentation)
 
 # About
 
 ## About the storefront
 
-AKVA is our customized [Hydrogen][hydrogen-github] starter that presents a real-world example of how Sanity and Structured Content can elevate your custom Shopify storefronts. This is an enhanced version demonstrating some additional features such as enhanced structured content for products and the addition of a "guide" content type, all of which lead to richer PDPs (Product Display Pages). These additions include:
-
-- A material document type to tell a story about the materials a product is made up of. A product can be composed of multiple materials. The PDP is updated to display this information as well as cross-sell other products made of the same material.
-- A people document type allows details to be added for makers of the products. Again, this content is displayed on the PDP with a short biography and link through to the catalogue of the artists work.
-- The guide document type is an example of how content and sales strategies can work together through structured content. If a guide references a product, then any hotspotted images are pulled onto any relevant PDPs in order to show products in context.
+AKVA is the customized [Hydrogen][hydrogen-github] starter that presents a real-world example of how Sanity and Structured Content can elevate your custom Shopify storefronts, with the further enhancements taken by Live Story. This is an enhanced version demonstrating some additional features such as enhanced structured content for products and the addition of a "guide" content type, all of which lead to richer PDPs (Product Display Pages). 
 
 This demo also features an embedded version of our pre-configured Studio and [Sanity Connect for Shopify][sanity-connect], which syncs products and collections from your Shopify storefront to your Sanity dataset.
 
-This starter showcases a few patterns you can adopt when creating your own custom storefronts. Use Sanity and Hydrogen to delight customers with rich, shoppable editorial experiences that best tell your story.
+This starter showcases a few patterns you can adopt when creating your own custom storefronts. Use Sanity, Hydrogen and Live Story to delight customers with rich, shoppable editorial experiences that best tell your story.
 
 ## About the Studio
 
-This studio is based on our [Shopify Studio][standard-studio] template, which has a [number of features][standard-studio-features]. In addition to this, we've modelled some additional content as detailed above.
-
-# Storefront Features
-
-**[View the feature gallery][about]**
-
-This TypeScript demo adopts many of Hydrogen's [framework conventions and third-party libraries][hydrogen-framework]. If you've used Hydrogen then you should hopefully feel at home here.
+This studio is based on our [Shopify Studio][standard-studio] template, which has a [number of features][standard-studio-features]. In addition to this, we've modelled some additional content as detailed above, inlcuding Live Story.
 
 # Fetching Sanity data
 
@@ -44,7 +34,7 @@ const PARAMS = { slug: "about" };
 export default function MyServerComponent() {
   const { data, error } = useSanityQuery({
     // Required
-    query: QUERY,
+    query: QUERY, // QUERY must be updated to fetch Live Story blocks too
     // Optional
     params: PARAMS,
     // Optional: pass through any useQuery options
@@ -58,63 +48,58 @@ export default function MyServerComponent() {
 
 [The hook itself][use-sanity-query-hook] is super lightweight - it uses our official [`@sanity/client`][sanity-js-client] library wrapped in a Hydrogen [`useQuery`][hydrogen-use-query] hook to make it suspense-friendly. That's it!
 
-# Opinions
+# Live Story data integration
+This example shows contents that include Live Story models.
 
-We've taken the following opinions on how we've approached this demo.
+### 1. Live Story main script
+In order to load Live Story contents successfully, you need to update the `<head>` content inside your `root.tsx` like the following, updating livestory script with your brand name `{BRAND}`
 
-<details>
-<summary><strong>Shopify is the source of truth for non-editorial content</strong></summary>
 
-- For products, this includes titles, handles, variant images and product options.
-- For collections, this includes titles and collection images.
+```javascript
+<head>
+  <script
+    nonce={nonce}
+    src="https://code.jquery.com/jquery-3.7.0.min.js"
+  />
+  <script
+    nonce={nonce}
+    src="https://assets.livestory.io/dist/livestory-{BRAND}.min.js"
+  />
+  <script
+    nonce={nonce}
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.$ls = window.$ls || function(){(window.$ls.q=window.$ls.q||[]).push(arguments)};
+      `,
+    }}
+  />
+</head>
+```
 
-</details>
+### 2. Integrate Live Story content in your models
+You can easily integrate Live Story contents in you pre-existing objects.
+Simply import Live Story document and objects and use them in your models.
 
-<details>
-<summary><strong>Shopify data stored in our Sanity dataset is used to improve the editor experience</strong></summary>
+```javascript
+import { LiveStoryDocument, LiveStoryObject, LiveStoryModuleStudio } from 'livestory-sanity-sdk/studio'
+```
 
-- This allows us to display things like product status, prices and even inventory levels right in our Sanity Studio.
-- Our application always fetches from Shopify's Storefront API at runtime to ensure we have the freshest data possible, especially important when dealing with fast-moving inventory.
+You find the example of utilization inside `packages/sanity/src/schema/index.ts`
 
-</details>
+After integrated Live Story, you can model your contents and inlude them wherever within your pre-existing components in your Studio
 
-<details>
-<summary><strong>Collections are managed entirely by Shopify</strong></summary>
 
-- Shopify is used to handle collection rules and sort orders. Sanity is used to enhance the content displayed on the storefront.
+### 3. Use Live Story in your Hydrogen storefront
+After updated your queries to fetch Live Story data, with the `livestory-sanity-sdk` SDK, you can use pre-built components and use them in your storefront to show your content designed in Live Story.
 
-</details>
+```javascript
+import LiveStorySanity from "livestory-sanity-sdk";
 
-<details>
-<summary><strong>Product options are customized in Sanity</strong></summary>
-
-- Data added to specific product options (for example, associating a hex value with the color 'Red', or a string value with the Poster size 'A2') is done in Sanity.
-- We treat this quite simply and manage these in a dedicated field within the `Settings` section of our studio. We also make sure to query this field whenever querying products in our Sanity dataset.
-- This could alternatively be managed with Shopify's metatags.
-
-</details>
-
-<details>
-<summary><strong>We don't surface Shopify HTML descriptions and metatags</strong></summary>
-
-- For this demo, Shopify tags are used purely as a non-visual organizational tool (to drive automated collections) and we use Portable Text over Shopify's description HTML field. However, Hydrogen makes it very easy to surface these in your application if needed.
-
-</details>
-
-<details>
-<summary><strong>Non-product (regular) pages are managed entirely by Sanity</strong></summary>
-
-- Shopify pages and blog posts (associated with the Online Store) channel aren't used in this demo. A dedicated `page` document type in Sanity has been created for this purpose.
-
-</details>
-
-<details>
-<summary><strong>We query our Sanity dataset when building sitemap.xml entries</strong></summary>
-
-- We use Sanity as the source of truth when determining whether a product or collection page is _visible_.
-- This gives us the flexibility to add custom logic to control whether certain pages should be visible or not. For example, if you wanted to hide product pages within a specific date range, or hide collections that didn't have any editorial modules assigned to them.
-
-</details>
+<LiveStorySanity.Storefront.LiveStory
+  value={page.liveStoryHP}
+  language={language}
+/>
+```
 
 # Getting started
 
