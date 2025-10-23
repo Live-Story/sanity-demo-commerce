@@ -87,5 +87,6 @@ public/build
 
 # LS Docker deploy sample
 start.sh
+server.js
 proxy.js
 Dockerfile
