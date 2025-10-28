@@ -93,8 +93,6 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
     throw notFound();
   }
 
-  console.log("Collection page LS", page);
-
   // Resolve any references to products on the Storefront API
   const gids = fetchGids({ page, context });
 

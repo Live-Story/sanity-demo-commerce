@@ -116,8 +116,6 @@ export async function loader({ params, context, request }: LoaderFunctionArgs) {
     throw notFound();
   }
 
-  console.log("PAGE LS", page?.liveStory);
-
   if (!product.selectedVariant) {
     return redirectToFirstVariant({ product, request });
   }

@@ -65,7 +65,6 @@ export async function loader({ params, context }: LoaderFunctionArgs) {
         ...block.reference,
       };
     });
-  console.log("PAGE", p);
 
   // Resolve any references to products on the Storefront API
   const gids = fetchGids({ page, context });
