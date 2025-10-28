@@ -53,6 +53,12 @@ export const resolvePreviewUrl = (document: SanityDocumentLike) => {
       path = slug == null ? '/' : `/people/${slug}`
       break
     }
+
+    case 'livestory': {
+      const id = document?.id
+      const type = document?.type == 'wall' ? 'layout' : 'destination'
+      return `https://api.livestory.io/content/${type}/${id}/preview`
+    }
   }
 
   if (document?.language) {
