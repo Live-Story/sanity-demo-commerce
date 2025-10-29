@@ -52,7 +52,7 @@ export default function MyServerComponent() {
 This example shows contents that include Live Story models.
 
 ### 1. Live Story main script
-In order to load Live Story contents successfully, you need to update the `<head>` content inside your `root.tsx` like the following, updating livestory script with your brand name `{BRAND}`
+In order to load Live Story contents successfully, you need to update the `<head>` content inside your `root.tsx` inside your storefront like the following, updating livestory script with your brand name `{BRAND}`
 
 
 ```javascript
@@ -76,9 +76,9 @@ In order to load Live Story contents successfully, you need to update the `<head
 </head>
 ```
 
-### 2. Integrate Live Story content in your models
-You can easily integrate Live Story contents in you pre-existing objects.
-Simply import Live Story document and objects and use them in your models.
+### 2. Integrate Live Story in Sanity Studio
+You can easily integrate Live Story contents in you pre-existing Studio models.
+Simply import Live Story document, module and objects, and use them in your models.
 
 ```javascript
 import { LiveStoryDocument, LiveStoryObject, LiveStoryModuleStudio } from 'livestory-sanity-sdk/studio'
