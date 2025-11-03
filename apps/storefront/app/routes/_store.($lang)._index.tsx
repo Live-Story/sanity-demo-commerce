@@ -60,8 +60,6 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
     url += `&store_code=${country}`;
   }
 
-  console.log(url)
-
   const LSssrResponse = await fetch(url, {
     method: "GET",
   });
