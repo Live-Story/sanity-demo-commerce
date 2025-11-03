@@ -53,12 +53,14 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
   // Fetch Live Story SSR content
   const type =
     page.liveStoryHP?.type === "wallgroup" ? "destination" : "layout";
-  let url = `https://api.livestory.io/content/${type}/
-    ${page.liveStoryHP?.id}?lang_code=${language ?? "default"}`;
+  let url = `https://api.livestory.io/content/${type}/` +
+    `${page.liveStoryHP?.id}?lang_code=${language ?? "default"}`;
 
   if (country) {
     url += `&store_code=${country}`;
   }
+
+  console.log(url)
 
   const LSssrResponse = await fetch(url, {
     method: "GET",
