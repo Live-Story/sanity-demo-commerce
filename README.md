@@ -98,6 +98,7 @@ import LiveStorySanity from "livestory-sanity-sdk";
 <LiveStorySanity.Storefront.LiveStory
   value={page.liveStoryHP}
   language={language}
+  store={country}
 />
 ```
 
