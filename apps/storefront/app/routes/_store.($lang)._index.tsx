@@ -30,6 +30,7 @@ export const handle = {
 export async function loader({ context, params }: LoaderFunctionArgs) {
   validateLocale({ context, params });
   const language = context.storefront.i18n.language.toLowerCase();
+  const country = context.storefront.i18n.country.toLowerCase();
 
   const cache = context.storefront.CacheCustom({
     mode: "public",
@@ -52,15 +53,16 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
   // Fetch Live Story SSR content
   const type =
     page.liveStoryHP?.type === "wallgroup" ? "destination" : "layout";
+  let url = `https://api.livestory.io/content/${type}/
+    ${page.liveStoryHP?.id}?lang_code=${language ?? "default"}`;
 
-  const LSssrResponse = await fetch(
-    `https://api.livestory.io/content/${type}/${
-      page.liveStoryHP?.id
-    }?lang_code=${language ?? "default"}`,
-    {
-      method: "GET",
-    }
-  );
+  if (country) {
+    url += `&store_code=${country}`;
+  }
+
+  const LSssrResponse = await fetch(url, {
+    method: "GET",
+  });
 
   if (page.liveStoryHP && LSssrResponse.ok) {
     page.liveStoryHP.ssr = await LSssrResponse.text();
@@ -71,6 +73,7 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
 
   return defer({
     language,
+    country,
     page,
     gids,
     analytics: {
@@ -80,7 +83,7 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  const { language, page, gids } =
+  const { language, country, page, gids } =
     useLoaderData<SerializeFrom<typeof loader>>();
 
   return (
@@ -96,6 +99,7 @@ export default function Index() {
               <LiveStorySanity.Storefront.LiveStory
                 value={page.liveStoryHP}
                 language={language}
+                store={country}
               />
             )}
 

@@ -17,7 +17,7 @@
     "@sanity/scheduled-publishing": "^1.2.4",
     "@sanity/ui": "2.0.1",
     "@sanity/vision": "^3.25.0",
-    "livestory-sanity-sdk": "^1.0.0",
+    "livestory-sanity-sdk": "^1.0.1",
     "sanity-plugin-documents-pane": "^2.2.0",
     "sanity-plugin-hotspot-array": "^1.0.1",
     "sanity-plugin-iframe-pane": "^3.1.3",
